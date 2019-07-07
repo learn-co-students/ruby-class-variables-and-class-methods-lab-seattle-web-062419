@@ -8,7 +8,7 @@ class Song
     @@genres = []
     @@artists = []
     GENRECT = {}
-    # ARTCT = ?
+    ARTHASH = {}
     GNRHASH = {}
 
     def initialize(name, artist, genre)
@@ -21,30 +21,32 @@ class Song
         @@genres << genre
     end
 
-    def count
+    
+
+    def self.count
         @@count
     end
 
-    def artists
-
+    def self.artists
+        @@artists.uniq
     end
 
-    def genres
+    def self.genres
         @@genres.uniq
     end
-    binding.pry
-    def genre_count
-        binding.pry
-        #use GNRHASH here to add collect results as key/value pair
-        @@genres.collect {|x|
-            @@genres.count(x)
-        }
+    
+    def self.genre_count
+        @@genres.each do |genre|
+            GNRHASH[genre] = @@genres.count(genre)
+        end
+        GNRHASH
     end
 
-    def artist_count
-        # @@artists.collect {|x|
-
-        # }
+    def self.artist_count
+        @@artists.each do |artist|
+            ARTHASH[artist] = @@artists.count(artist)
+        end
+        ARTHASH
     end
     
 end
